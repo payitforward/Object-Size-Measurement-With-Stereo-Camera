@@ -1,4 +1,0 @@
-Sau khi mở project trên Visual Studio Community 2017
-Tạo một thư mục mới và build project trong thư mục đó
-Sau khi build xong thì copy các tất cả trong File "Copy_file" dán vào thư mục tạo trên
-để chạy thử

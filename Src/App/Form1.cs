@@ -11,16 +11,8 @@ using System.IO;
 using System.Diagnostics;
 using System.Threading;
 
-
-
-
-
 namespace App
 {
-    
-    /////////////////////////// MAIN FORM ///////////////////////////////
-    
-
     public partial class Form1 : Form
     {
         static string path = System.IO.Directory.GetCurrentDirectory();
@@ -41,17 +33,17 @@ namespace App
         int i6 = 0;
 
 
+
         public Form1()
         {
             Form f = new Form();
-            
             { 
             f.StartPosition = FormStartPosition.CenterScreen;
             f.Size = new Size(400, 400);
             f.FormBorderStyle = FormBorderStyle.None;
             f.MinimizeBox = false;
             f.MaximizeBox = false;
-             }
+            }
             Image im = Image.FromFile("box.jpg");
             PictureBox pb = new PictureBox();
             {
@@ -66,126 +58,89 @@ namespace App
             f.Close();
             InitializeComponent();
             button1.Enabled = false;
-            
         }
 
-        private void Button1_Click(object sender, EventArgs e)
+        private void label2_Click(object sender, EventArgs e)
         {
-            
-                string number3 = i3.ToString();
-                string number6 = i6.ToString();
-                string diachi3 = path3 + number3 + duoi;
-                string anh = image_path + number6 + duoi1;
-                File.CreateText(diachi3);
 
-                string line1;
-                string line2;
-                string line3;
-                // Read the file and display it line by line. 
-                var delay = Task.Delay(400);
-                delay.Wait();
-
-                System.IO.StreamReader file1 = new System.IO.StreamReader(final_path + "\\distance1.txt");
-                System.IO.StreamReader file2 = new System.IO.StreamReader(final_path + "\\distance2.txt");
-                System.IO.StreamReader file3 = new System.IO.StreamReader(final_path + "\\distance3.txt");
-                line1 = file1.ReadLine();
-                line2 = file2.ReadLine();
-                line3 = file3.ReadLine();
-                textBox1.Text = line1;
-                textBox3.Text = line2;
-                textBox5.Text = line3;
-                file1.Close();
-                file2.Close();
-                file3.Close();
-                i3++;
-                i6++;
-                pictureBox1.Image = Image.FromFile(anh);
-            
         }
 
-        private void Button3_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
-            textBox2.BackColor = Color.Green;
-            textBox2.Text = "ACTIVATE";
+            string number3 = i3.ToString();
+            string number6 = i6.ToString();
+            string diachi3 = path3 + number3 + duoi;
+            string anh = image_path + number6 + duoi1;
+            File.CreateText(diachi3);
+
+            string line1;
+            string line2;
+            string line3;
+            // Read the file and display it line by line. 
+            var delay = Task.Delay(400);
+            delay.Wait();
+
+            System.IO.StreamReader file1 = new System.IO.StreamReader(final_path + "\\distance1.txt");
+            System.IO.StreamReader file2 = new System.IO.StreamReader(final_path + "\\distance2.txt");
+            System.IO.StreamReader file3 = new System.IO.StreamReader(final_path + "\\distance3.txt");
+            line1 = file1.ReadLine();
+            line2 = file2.ReadLine();
+            line3 = file3.ReadLine();
+            textBox1.Text = line1;
+            textBox2.Text = line2;
+            textBox3.Text = line3;
+            file1.Close();
+            file2.Close();
+            file3.Close();
+            i3++;
+            i6++;
+            pictureBox1.Image = Image.FromFile(anh);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            textBox4.BackColor = Color.Green;
+            textBox4.Text = "ACTIVATE";
             string number1 = i1.ToString();
             string diachi1 = path1 + number1 + duoi; ;
             File.CreateText(diachi1);
             i1++;
             //File.Delete(path1);
-
-
         }
 
-        private void Button2_Click(object sender, EventArgs e)
+        private void button3_Click(object sender, EventArgs e)
         {
-            textBox2.BackColor = Color.Yellow;
-            textBox2.Text = ".....WAIT.....";
+            textBox4.BackColor = Color.Yellow;
+            textBox4.Text = ".....WAIT.....";
             button1.Enabled = false;
             string number2 = i2.ToString();
             string diachi2 = path2 + number2 + duoi;
             File.CreateText(diachi2);
             i2++;
-
-            //File.Delete(path1);
-            //File.Delete(path2);
-
         }
 
-        private void TextBox2_TextChanged(object sender, EventArgs e)
+        private void button4_Click(object sender, EventArgs e)
         {
-           
-           
-        }
-
-        private void Label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            //var delay = Task.Delay(2000);
-            //delay.Wait();
-            //textBox2.Text = "READY TO START!!!";
-        }
-
-        private void TextBox3_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void TextBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Button6_Click(object sender, EventArgs e)
-        {
-            textBox2.BackColor = Color.Green;
-            textBox2.Text = ".....RUNNING.....";
-            button1.Enabled = true;
-            string number4 = i4.ToString();
-            string diachi4 = path4 + number4 + duoi;
-            File.CreateText(diachi4);
-            textBox4.Text = "MANUAL";
-            i4++;
-        }
-
-        private void Button5_Click(object sender, EventArgs e)
-        {
-            textBox2.BackColor = Color.Green;
-            textBox2.Text = ".....RUNNING.....";
+            textBox4.BackColor = Color.Green;
+            textBox4.Text = ".....RUNNING.....";
             button1.Enabled = true;
             string number5 = i5.ToString();
             string diachi5 = path5 + number5 + duoi;
             File.CreateText(diachi5);
-            textBox4.Text = "AUTO";
+            textBox5.Text = "AUTO";
             i5++;
         }
 
-        private void PictureBox1_Click(object sender, EventArgs e)
+        private void button5_Click(object sender, EventArgs e)
         {
-
+            textBox4.BackColor = Color.Green;
+            textBox4.Text = ".....RUNNING.....";
+            button1.Enabled = true;
+            string number4 = i4.ToString();
+            string diachi4 = path4 + number4 + duoi;
+            File.CreateText(diachi4);
+            textBox5.Text = "MANUAL";
+            i4++;
         }
     }
 }
