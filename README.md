@@ -2,7 +2,7 @@
 
 ## TỔNG QUAN
 
-Đây là bài viết hướng dãn cách sử dụng stereo camera và ứng dụng của stereo trong ứng dụng thực tế là đo kích thước 3 chiều của một vật thể
+Đây là bài viết hướng dẫn cách sử dụng stereo camera và ứng dụng của stereo trong ứng dụng thực tế là đo kích thước 3 chiều của một vật thể
 cụ thể là đo kích thước hình hộp
 Bài hướng dẫn bao gồm 3 phần:
 
@@ -11,6 +11,8 @@ Bài hướng dẫn bao gồm 3 phần:
 2/ Cách cài đặt và sử dụng thư viện librealsene2 trên Window và Linux
 
 3/ Giải thuật thực hiện trong ứng dụng đo kích thước hình hộp
+
+4/ Cách sử dụng project BoxMeasure trong phần mềm Visual Studio Community 2017
 
 ## 1/ Cách stereo camera tính độ sâu
 
@@ -219,6 +221,43 @@ Các file text dùng để chứa kết quả cho source code và giao diện tr
     - Nếu muốn đổi chế độ thì phải ấn nút RESET, sau đó mới chọn chế độ mới được
     - Nhấn nút DISTANCE để lấy kết quả đo kích thước
 
-Mình sẽ up hết project mình làm lên Github này, nếu có vấn đề gì thì bạn hãy tạo câu hỏi trong phần Issues, mình sẽ cố gắng trả lời các bạn!!!
+## 4/ Cách sử dụng project BoxMeasure trong phần mềm Visual Studio Community 2017
+
+Trong phần Src của thư mục chứa project "BoxMeasure.sln", project này chứa 2 project  nhỏ là App chứa source code của giao diện và Code chứa source code đo kích thước
+
+Trước khi mở project này trong phần mềm Visual Studio thì chúng ta sẽ tải và cài đặt thư viện của librealsense2 và opencv (ở project này mình sử dụng opencv phiên phản 3.4.7). Khi cài các bạn cứ để mặc định và còn thư viện opencv thì cài ở ổ C:\
+
+Khi clone về, nếu chúng ta mở lên mà bị lỗi project "Code(unavailable)" thì các chịu khó xóa project đó và tạo project mới "Visual C++ -> Empty Project". Thêm file source.cpp trong project vừa tạo đó và cuối cùng copy toàn bộ code của file source.cpp trên github vào
+
+Để chạy được project thì các bạn phải thêm thư viện vào project vừa tạo, hai thư viện cần của intel realsense và opencv. Cách thêm thư viện của intel realsense mình đã hướng dẫn ở trên. Thêm thư viện opencv như hướng dẫn ở đây: [Link](https://www.youtube.com/watch?v=oJ6fh-XLjtg)
+
+### Lưu ý khi build project với hai thư viện intel realsense và opencv
+
+    - Tất cả đều phải build ở phiên bản 64 bit
+    
+![image of 64bit](image/64bit.png)
+
+    - Khi build project có 2 chế độ là Debug và Release. Nếu chọn chế độ Debug thì khi thêm thư viện opencv, ta phải thêm vào "Linker -> Input" file "opencv_world347d.lib" còn nếu ở chế độ Release thì thêm file "opencv_world347.lib"
+
+![image of input](image/input.png)
+
+    - Sau khi đã thêm hết thư viện, phần mềm sẽ không còn báo lỗi thiếu thư viện, lúc này ta tiến hành build project. Vì 2 project này hoạt động với nhau nên ta cần build chúng chung một thư mục, để làm vậy thì ta cần chỉ cho chúng đường dẫn để build ở đâu. Ở đây chúng ta tạo thư mục "Final_Release" để build 2 project vào đó
+        * Project App (C#)
+
+![image of buildcsharp](image/buildcsharp.png) 
+        
+        * Project Code (C++)
+
+![image of buildcpp](image/buildcpp.png)
+
+    - Sau đó ta tiến hành build bằng cách nhấn tổ hợp phím "Ctrl + Shift + B". Sau khi quá trình buld xong, các bạn vào thư mục "Final_Release sẽ thấy kết quả.
+    - Cuối cùng để project vừa build xong chạy được, ta sẽ thêm 2 file .dll của 2 thư viện trên và các file giao tiếp giữa hai project. Chúng ta vào thư mục Copy_File copy hết và dán qua thư mục "Final_Release"
+
+![image of copyfile](image/copyfile.png)
+
+    - Nếu bạn build ở chế độ Debug thì copy file "opencv_world347d.dll" vào nhé!!!
+
+
+Mình đã up hết project mình làm lên Github này, nếu có vấn đề gì thì bạn hãy tạo câu hỏi trong phần Issues, mình sẽ cố gắng trả lời các bạn!!!
 
 Chúc các bạn thành công trong việc build cho mình một ứng dụng sử dụng Stereo Depth Camera D415 :))
